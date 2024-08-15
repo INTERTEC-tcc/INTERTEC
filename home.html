@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <script src="https://kit.fontawesome.com/3863adf780.js" crossorigin="anonymous"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='home_style'>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/home_style.css">
+
+    <title>Home</title>
+
+</head>
+
+<body bgcolor="#141f34">
+
+
+    <div vw class="enabled">
+
+        <div vw-access-button class="active"></div>
+
+        <div vw-plugin-wrapper>
+
+            <div class="vw-plugin-top-wrapper"></div>
+
+        </div>
+        
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"> </script>
+    <script> new window.VLibras.Widget('https://vlibras.gov.br/app'); </script>
+
+
+    <header class="header">
+
+        <div class="logo">
+
+            <img src="img/menu.png">
+
+            <a href="#" class="logo">Intertec</a><img src="img\logo1.png">
+
+        </div>
+
+        <div class="menu">
+
+            <nav>
+
+                <a href="home.html">Home</a>
+
+                <a href="meutime.html">Meu time</a>
+
+                <a href="regras.html">Regras</a>
+
+                <a href="sobre.html">Sobre nós</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <center>
+       <h1>EVENTOS</h1>
+    </center>
+    
+    <link rel="stylesheet" href="css/slider_style.css">
+
+    <section class="grupo">
+
+        <div class="slider-grupo">
+
+            <div class="slider">
+
+                <img id="slide1" src="img/slide1.jpg">
+
+                <img id="slide2" src="img/slide2.jpg">
+
+                <img id="slide3" src="img/slide3.jpg">
+
+            </div>
+
+            <div class="slider-nav">
+
+                <a href="#slide1"></a>
+                <a href="#slide2"></a>
+                <a href="#slide3"></a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <center>
+
+        <div class="scoreboard"> <!--PLACAR-->
+            <div style="color: white;">
+                <h1>Acontecendo Agora</h1>
+            </div>
+            <div class="box">
+                <div class="time" id="time" style="color: rgb(103, 172, 0);">00:00</div>
+                <div class="scores" style="color: gray; font-size: 60px;">
+                    <span id="scoreA">0</span> x <span id="scoreB">0</span>
+                </div>
+                <div class="buttons">
+                    <button id="increaseScoreA" onclick="increaseScore('A')">Gol Time A</button>
+                    <button id="increaseScoreB" onclick="increaseScore('B')">Gol Time B</button>
+                    <button id="resetGame" onclick="resetGame()">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+
+
+    </center>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Recuperar os gols do localStorage
+            if (localStorage.getItem("scoreA")) {
+                document.getElementById("scoreA").textContent = localStorage.getItem("scoreA");
+            }
+
+            if (localStorage.getItem("scoreB")) {
+                document.getElementById("scoreB").textContent = localStorage.getItem("scoreB");
+            }
+        });
+
+        function increaseScore(team) {
+            var scoreElement;
+            if (team === 'A') {
+                scoreElement = document.getElementById("scoreA");
+            } else if (team === 'B') {
+                scoreElement = document.getElementById("scoreB");
+            }
+
+            var currentScore = parseInt(scoreElement.textContent);
+            currentScore += 1;
+            scoreElement.textContent = currentScore;
+
+            // Salvar o novo valor no localStorage
+            localStorage.setItem("score" + team, currentScore);
+        }
+
+        function resetGame() {
+            document.getElementById("scoreA").textContent = 0;
+            document.getElementById("scoreB").textContent = 0;
+            localStorage.setItem("scoreA", 0);
+            localStorage.setItem("scoreB", 0);
+        }
+
+    </script>
+
+</body>
+
+</html>
